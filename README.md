@@ -26,6 +26,7 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition 
   - Implement Spring Library to leverage its Dependency Injection feature
   - Add Report Logging and extent report generation
   - Link to a CI server
+  - Add a Database & provisions to run queries
 
   
 ## Use below steps to use/contribute to this project:
