@@ -1,19 +1,23 @@
 ## Welcome to Cucumber-Selenium Test Automation Framework
 
 This is an open source Test Automation Framework based off Java-Selenium-Cucumber.
+
 It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition (2019).
+
 
 ## Below are the Key Features:
 
-  - **Maven Project**: This helps to organize the project & provides an easy way to maintain builds. Also takes care of project                                    dependencies automatically
+  - **Maven Project**: This helps to organize the project & provides an easy way to maintain builds. Also takes care of project dependencies automatically
   
   - **Integrated Scripts**: Has custom shell scripts to automate day to day tasks
+
   
 ## TO DO ##
 
   - Implement Spring Library to leverage its Dependency Injection feature
   - Add Report Logging and extent report generation
   - Link to a CI server
+
   
 ## Use below steps to use/contribute to this project:
   
@@ -24,15 +28,18 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition 
   **Step 2: Add your changes**
   Make changes to the files you wish & then use below commands to have them ready to push to GITHUB
   `git add .`
+
   `git checkout -b TestBranch`
+
   `git commit -am "<Your Commit Message>"`
+
   `git push --set-upstream origin TestBranch`
   
   **Step 3: Create a Pull Request & Merge changes**
+
   Follow the URL & Create a Pull Request for merging your changes into the main Repo
   
-  Once Merged, every other user working on the project can Pull in your changes and start working on their part.
-  
+  Once Merged, every other user working on the project can Pull in your changes and start working on their part.  
 
 
 
