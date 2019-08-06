@@ -31,12 +31,14 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition 
 ## Use below steps to use/contribute to this project:
   
   **Step 1: Checkout the project**
+  
   Use the below command to checkout the project
 
   `git clone "https://github.com/harshal259/Test-Automation.git"`
 
   
   **Step 2: Add your changes**
+  
   Make changes to the files you wish & then use below commands to have them ready to push to GITHUB
 
   `git add .`
