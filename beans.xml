@@ -1,0 +1,17 @@
+<!--<beans-->
+<!--        xmlns="http://www.springframework.org/schema/beans"-->
+<!--        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--        xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+<!--http://www.springframework.org/schema/beans/spring-beans-2.5.xsd-->
+<!--http://www.springframework.org/schema/beans ">-->
+
+<!--    <bean id="GFG" class="com.geeksforgeeks.org.GFG">-->
+<!--        <property name="geek">-->
+<!--            <ref bean="CsvGFG"/>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+<!--    <bean id="CsvGFG" class="com.geeksforgeeks.org.impl.CsvGFG"/>-->
+<!--    <bean id="JsonGFG" class="com.geeksforgeeks.org.impl.JsonGFG"/>-->
+
+<!--</beans>-->

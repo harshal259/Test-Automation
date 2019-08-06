@@ -22,8 +22,8 @@ public class steps {
 
 //        System.setProperty("webdriver.gecko.driver","/Users/Documents/geckodriver");
 //        System.setProperty("webdriver.chrome.driver","MentionPathtothisdriver/chromedriver");
-//        System.setProperty("webdriver.gecko.driver","C:\\Users\\Harshal Purohit\\Documents\\TestRepos\\Helloworld\\HelloWorld\\drivers\\geckodriver.exe");
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\Harshal Purohit\\Documents\\TestRepos\\Helloworld\\HelloWorld\\drivers\\chromedriver.exe");
+//        System.setProperty("webdriver.gecko.driver","C:\Users\Harshal Purohit\IdeaProjects\MyFW\HelloWorld\drivers\\geckodriver.exe");
+        System.setProperty("webdriver.chrome.driver","C:\\Users\\Harshal Purohit\\IdeaProjects\\MyFW\\HelloWorld\\drivers\\chromedriver.exe");
 
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
