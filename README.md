@@ -1,37 +1,42 @@
-## Welcome to GitHub Pages
+## Welcome to Cucumber-Selenium Test Automation Framework
 
-You can use the [editor on GitHub](https://github.com/harshal259/HelloWorld/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This is an open source Test Automation Framework based off Java-Selenium-Cucumber.
+It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition (2019).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Below are the Key Features:
 
-### Markdown
+  - **Maven Project**: This helps to organize the project & provides an easy way to maintain builds. Also takes care of project                                    dependencies automatically
+  
+  - **Integrated Scripts**: Has custom shell scripts to automate day to day tasks
+  
+## TO DO ##
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+  - Implement Spring Library to leverage its Dependency Injection feature
+  - Add Report Logging and extent report generation
+  - Link to a CI server
+  
+## Use below steps to use/contribute to this project:
+  
+  **Step 1: Checkout the project**
+  Use the below command to checkout the project
+  `git clone "https://github.com/harshal259/Test-Automation.git"`
+  
+  **Step 2: Add your changes**
+  Make changes to the files you wish & then use below commands to have them ready to push to GITHUB
+  `git add .`
+  `git checkout -b TestBranch`
+  `git commit -am "<Your Commit Message>"`
+  `git push --set-upstream origin TestBranch`
+  
+  **Step 3: Create a Pull Request & Merge changes**
+  Follow the URL & Create a Pull Request for merging your changes into the main Repo
+  
+  Once Merged, every other user working on the project can Pull in your changes and start working on their part.
+  
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/harshal259/HelloWorld/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
 ### Support or Contact
+Contact me:
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Harshal Purohit: harshal259@gmail.com
