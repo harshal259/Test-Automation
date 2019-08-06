@@ -37,7 +37,7 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition 
   `git clone "https://github.com/harshal259/Test-Automation.git"`
 
   
-  **Step 2: Add your changes**
+  **Step 2: Add your changes & create a snapshot**
   
   Make changes to the files you wish & then use below commands to have them ready to push to GITHUB
 
