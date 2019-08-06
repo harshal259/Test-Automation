@@ -11,7 +11,16 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition 
   
   - **Integrated Scripts**: Has custom shell scripts to automate day to day tasks
 
-  
+
+## Pre-Requisites ##
+
+  - Java/JDK (v1.7 or greater)
+  - An IDE (IntelliJ/Eclipse) with cucumber & gherkin plugin installed
+  - GIT Bash for Windows / Git for Linux/Mac
+  - Notepad++ (Recommended)
+  - WGET Binary (Recommended)
+
+
 ## TO DO ##
 
   - Implement Spring Library to leverage its Dependency Injection feature
