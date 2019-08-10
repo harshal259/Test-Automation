@@ -34,7 +34,7 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition 
   3. You need to update IDE settings at 2 locations with this java version
   
     3.1 Use Ctrl + Alt + S to open project settings
-        Navigate to **Build, Execution, Deployment** > **Compiler** > Java Compiler & update the Target Bycode version to your java version obtained above.
+        Navigate to Build, Execution, Deployment > Compiler > Java Compiler & update the Target Bycode version to your java version obtained above.
         
     3.2 Right click your project and hit F4.
         Set the language level to be the same as your Java Version.
