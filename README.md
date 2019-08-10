@@ -27,7 +27,7 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition 
 
   1. run the below command to determine the java version on your machine:
   
-  `java --version` 
+      `java --version` 
   
   2. Import the Clone Project in IntelliJ.
   
