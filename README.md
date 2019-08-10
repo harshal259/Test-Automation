@@ -19,7 +19,11 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition 
   - GIT Bash for Windows / Git for Linux/Mac
   - Notepad++ (Recommended)
   - WGET Binary (Recommended - [Required for getDrivers script])
-    (go this URL & get the latest 64-bit .exe file & place it under you git/mingw64 folder)
+  
+    
+    (go to this URL & get the latest 64-bit .exe file & place it under you git/mingw64 folder)
+    
+    
     WGET URL: https://eternallybored.org/misc/wget/
 
 
