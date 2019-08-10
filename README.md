@@ -18,15 +18,26 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition 
   - An IDE (IntelliJ/Eclipse) with cucumber & gherkin plugin installed
   - GIT Bash for Windows / Git for Linux/Mac
   - Notepad++ (Recommended)
-  - WGET Binary (Recommended)
+  - WGET Binary (Recommended - [Required for getDrivers script])
+    (go this URL & get the latest 64-bit .exe file & place it under you git/mingw64 folder)
+    WGET URL: https://eternallybored.org/misc/wget/
 
 
-## TO DO ##
+## IntelliJ Settings ##
 
-  - Implement Spring Library to leverage its Dependency Injection feature
-  - Add Report Logging and extent report generation
-  - Link to a CI server
-  - Add a Database & provisions to run queries
+  1. run the below command to determine the java version on your machine:
+  
+  `java --version` 
+  
+  2. Import the Clone Project in IntelliJ.
+  
+  3. You need to update IDE settings at 2 locations with this java version
+  
+    3.1 Use Ctrl + Alt + S to open project settings
+        Navigate to **Build, Execution, Deployment** > **Compiler** > Java Compiler & update the Target Bycode version to your java version obtained above.
+        
+    3.2 Right click your project and hit F4.
+        Set the language level to be the same as your Java Version.
 
   
 ## Use below steps to use/contribute to this project:
@@ -56,6 +67,15 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition 
   Follow the URL & Create a Pull Request for merging your changes into the main Repo
   
   Once Merged, every other user working on the project can Pull in your changes and start working on their part.  
+  
+  
+  
+  ## TO DO ##
+
+  - Implement Spring Library to leverage its Dependency Injection feature
+  - Add Report Logging and extent report generation
+  - Link to a CI server
+  - Add a Database & provisions to run queries
 
 
 
