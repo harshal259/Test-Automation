@@ -42,6 +42,13 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition 
         
     3.2 Right click your project and hit F4.
         Set the language level to be the same as your Java Version.
+        
+        
+   4. **Runner Config:**
+   
+      - Main Class: cucumber.pi.cli.Main
+      - Features: path/to/features/
+      - Glue: stepdefs
 
   
 ## Use below steps to use/contribute to this project:
