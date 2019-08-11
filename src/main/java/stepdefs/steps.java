@@ -1,6 +1,7 @@
 package stepdefs;
 
 import cucumber.api.PendingException;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -10,7 +11,12 @@ import utils.CommonUtils;
 
 import org.apache.http.util.Asserts;
 import org.openqa.selenium.By;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 
 import java.io.IOException;
 import java.util.Set;
@@ -20,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class steps extends DriverFactory {
 
     private static WebDriver driver = null;
+
     public static String browser = null;
     public static String driverPath = System.getProperty("user.dir") + "\\drivers\\";
     public CommonUtils commonutils = null;
@@ -39,8 +46,19 @@ public class steps extends DriverFactory {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown(Scenario scenario) {
         System.out.println("This is the after hook\nClosing the browser...");
+        if (scenario.isFailed()) {
+            try
+            {
+                byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+                scenario.embed(screenshot, "image/png");
+            } catch (WebDriverException e) {
+                System.err.println(e.getMessage());
+            } catch (ClassCastException cce) {
+                cce.printStackTrace();
+            }
+        }
         new DriverFactory().destroyDriver();
     }
 

@@ -12,4 +12,3 @@ Feature: Login Feature
    Then user created a new account by entering details
    Then user click on Data ploicy link
    Then I clear the entered data and reentered it through excel
-  
