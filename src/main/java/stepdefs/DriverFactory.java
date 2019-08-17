@@ -44,6 +44,8 @@ public class DriverFactory {
         return driver;
     }
 
+    public static String getTestURL() {return testURL = propReader.readProperty("testURL");}
+
     public void destroyDriver() {
         driver.quit();
         driver = null;
