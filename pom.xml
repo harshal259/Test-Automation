@@ -78,7 +78,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
                 <configuration>
-                  <executable>C:\Program Files\Java\jdk1.8.0_71\bin\javac</executable>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
 
             </plugin>
