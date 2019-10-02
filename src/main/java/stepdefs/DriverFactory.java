@@ -5,6 +5,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import utils.PropertyReader;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class DriverFactory {
 
     protected static WebDriver driver;
@@ -12,6 +18,9 @@ public class DriverFactory {
     public String browser = null;
     public static String testURL = null;
     public static PropertyReader propReader = new PropertyReader();
+    public static Connection conn = null;
+    public static Statement stmt = null;
+    public static ResultSet resultSet = null;
 
     public DriverFactory() {
         initialize();
@@ -44,10 +53,18 @@ public class DriverFactory {
         return driver;
     }
 
-    public static String getTestURL() {return testURL = propReader.readProperty("testURL");}
+    public static String getTestURL() {
+        return testURL = propReader.readProperty("testURL");
+    }
 
     public void destroyDriver() {
         driver.quit();
         driver = null;
+    }
+
+    public Connection getDBConnection() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/world", "root", "root");
+        return conn;
     }
 }

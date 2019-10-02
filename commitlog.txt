@@ -1,0 +1,19 @@
+commit d2a9945b3e931f9f925785425efa98d23bef6e9f
+Author: Harshal Purohit <harshal259@gmail.com>
+Date:   Sat Aug 10 14:57:00 2019 +0530
+
+    Update README.md
+
+diff --git a/README.md b/README.md
+index 0f58da2..87656ea 100644
+--- a/README.md
++++ b/README.md
+@@ -46,7 +46,7 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition
+         
+    4. **Runner Config:**
+    
+-      - Main Class: cucumber.pi.cli.Main
++      - Main Class: cucumber.api.cli.Main
+       - Features: path/to/features/
+       - Glue: stepdefs
+ 
