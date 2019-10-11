@@ -44,14 +44,14 @@ public class CommonUtils {
         return ss;
     }
 
-    public Map<String, Map<String, String>> getExcelDataMap(String fileName, int sheetno) throws Exception {
+    public Map<String, Map<String, String>> getExcelDataMap(String fileName, String sheetName) throws Exception {
         Map<String, Map<String, String>> excelFileMap = new HashMap<String, Map<String, String>>();
 
         File f = new File(fileName);
 
         FileInputStream FIS = new FileInputStream(f);
         XSSFWorkbook workbook = new XSSFWorkbook(FIS);
-        XSSFSheet sheet = workbook.getSheetAt(sheetno);
+        XSSFSheet sheet = workbook.getSheet(sheetName);
         int lastRow = sheet.getLastRowNum();
         int lastcell = sheet.getRow(0).getLastCellNum()-1;
 
@@ -69,7 +69,7 @@ public class CommonUtils {
 
             for (int j = 1; j <= lastcell; j++) {
                 key = sheet.getRow(0).getCell(j).getStringCellValue().trim();
-                value = sheet.getRow(i).getCell(j).getStringCellValue().trim();
+                value = sheet.getRow(i).getCell(j,org.apache.poi.ss.usermodel.Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue().trim();
 				System.out.println("\n Key is: " + key);
 				System.out.println("\n Value is: " + value);
 

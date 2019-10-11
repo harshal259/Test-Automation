@@ -166,27 +166,21 @@ public class steps extends DriverFactory {
         //WIP
     }
 
-    @When("^user applies item filters \"([^\"]*)\" for \"([^\"]*)\"$")
-    public void userAppliesItemFilters(String filters, String tcID) throws Throwable {
+    @When("^user applies item filters for \"([^\"]*)\" as per excel sheet \"([^\"]*)\"$")
+    public void userAppliesItemFilters(String tcID, String sheetName) throws Throwable {
         String path = System.getProperty("user.dir") + "\\src\\test\\resources\\config\\test.xlsx";
 
-        List<String> filterList = new ArrayList<String>();
-        String[] filterString = filters.split(",");
-        for (String i : filterString) {
-            filterList.add(i);
-        }
-        System.out.println("\n Filtered List is: " + filterList);
-
-        Map<String, String> excelData = commonutils.getExcelDataMap(path, 1).get(tcID);
+        Map<String, String> excelData = commonutils.getExcelDataMap(path, sheetName).get(tcID);
         System.out.println("\n Parsing Excel Data: \n" + excelData);
-
-        driver.findElement(By.xpath("//label/a[text()='" + excelData.get(filterList.get(0)) + "']//ancestor::li//input")).click();
-        driver.findElement(By.xpath("//label/a[text()='" + excelData.get(filterList.get(1)) + "']//ancestor::li//input")).click();
-        driver.findElement(By.xpath("//label/a[text()='" + excelData.get(filterList.get(3)) + "']//ancestor::li//input")).click();
-
-        Thread.sleep(3000);
-        Assert.assertTrue(driver.findElement(By.xpath("//label/a[text()='" + excelData.get(filterList.get(0)) + "']//ancestor::li//input")).isSelected());
-        Assert.assertTrue(driver.findElement(By.xpath("//label/a[text()='" + excelData.get(filterList.get(1)) + "']//ancestor::li//input")).isSelected());
-        Assert.assertTrue(driver.findElement(By.xpath("//label/a[text()='" + excelData.get(filterList.get(3)) + "']//ancestor::li//input")).isSelected());
+        Set<String> keySet = excelData.keySet();
+        for (String colName : keySet) {
+            if (excelData.get(colName) != "")
+                driver.findElement(By.xpath("//label/a[text()='" + excelData.get(colName) + "']//ancestor::li//input")).click();
+        }
+        Thread.sleep(2000);
+        for (String colName : keySet) {
+            if (excelData.get(colName) != "")
+                Assert.assertTrue(driver.findElement(By.xpath("//label/a[text()='" + excelData.get(colName) + "']//ancestor::li//input")).isSelected());
+        }
     }
 }

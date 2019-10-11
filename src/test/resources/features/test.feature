@@ -24,12 +24,12 @@ Feature: Login Feature
     Given user is on home page
     When user hovers on "<sectionName>" and selects "<category>"
     And verify that 5 products are displayed
-    When user applies item filters "Categories,Size,Color,Availability" for "<tcID>"
+    When user applies item filters for "<tcID>" as per excel sheet "<sheetName>"
 #    When user adds item 1 to the card
 #    Then I execute select query on DB
 
     Examples:
-      | sectionName | category | tcID  |
-      | Women       | Dresses  | tc_01 |
-      | Women       | Dresses  | tc_02 |
-      | Women       | Dresses  | tc_03 |
+      | sectionName | category | tcID  | sheetName   |
+      | Women       | Dresses  | tc_01 | Item Filter |
+      | Women       | Dresses  | tc_02 | Item Filter |
+      | Women       | Dresses  | tc_03 | Item Filter |
