@@ -35,12 +35,14 @@ public class DriverFactory {
         browser = propReader.readProperty("browser");
 
         if (browser.equalsIgnoreCase("chrome")) {
-            driverPath = driverPath + "\\chromedriver.exe";
+            if (!driverPath.contains(".exe"))
+                driverPath = driverPath + "\\chromedriver.exe";
             System.out.println("Driver Path: " + driverPath);
             System.setProperty("webdriver.chrome.driver", driverPath);
             driver = new ChromeDriver();
         } else if (browser.equalsIgnoreCase("firefox")) {
-            driverPath = driverPath + "\\geckodriver.exe";
+            if (!driverPath.contains(".exe"))
+                driverPath = driverPath + "\\geckodriver.exe";
             System.out.println("Driver Path: " + driverPath);
             System.setProperty("webdriver.gecko.driver", driverPath);
             driver = new FirefoxDriver();

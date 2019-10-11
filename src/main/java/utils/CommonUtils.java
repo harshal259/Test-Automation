@@ -2,8 +2,12 @@ package utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -11,38 +15,71 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class CommonUtils {
-	
-	public Select selectDropdown(WebElement s1)
-	{
-		Select ss = new Select(s1);
-		
-		return ss;
-		
-	}
-	
-	public String ExcelInput(int rowno, int colno, int sheetno, String fileName) throws Exception{
-		String ss = null;
-		File f = new File(fileName);
 
-		 FileInputStream FIS = new FileInputStream(f);
-		 XSSFWorkbook wb  = new XSSFWorkbook(FIS);
-		 XSSFSheet s = wb.getSheetAt(sheetno);
-		 XSSFCell xc1 = s.getRow(rowno).getCell(colno);
-		 CellType ct = xc1.getCellTypeEnum();
-		 
-		 
-		 if(ct == CellType.STRING)
-		 {
-		  ss = xc1.getStringCellValue();}
-		 
-		 else if (ct == CellType.NUMERIC)
-		 {
-			 Long ss1 = (long) xc1.getNumericCellValue();
-			  ss = String.valueOf(ss1);
-		 }
-		 
-		return ss;
-	}
-	
-	
+    public Select selectDropdown(WebElement s1) {
+        Select ss = new Select(s1);
+
+        return ss;
+
+    }
+
+    public String ExcelInput(int rowno, int colno, int sheetno, String fileName) throws Exception {
+        String ss = null;
+        File f = new File(fileName);
+
+        FileInputStream FIS = new FileInputStream(f);
+        XSSFWorkbook wb = new XSSFWorkbook(FIS);
+        XSSFSheet s = wb.getSheetAt(sheetno);
+        XSSFCell xc1 = s.getRow(rowno).getCell(colno);
+        CellType ct = xc1.getCellTypeEnum();
+
+
+        if (ct == CellType.STRING) {
+            ss = xc1.getStringCellValue();
+        } else if (ct == CellType.NUMERIC) {
+            Long ss1 = (long) xc1.getNumericCellValue();
+            ss = String.valueOf(ss1);
+        }
+
+        return ss;
+    }
+
+    public Map<String, Map<String, String>> getExcelDataMap(String fileName, int sheetno) throws Exception {
+        Map<String, Map<String, String>> excelFileMap = new HashMap<String, Map<String, String>>();
+
+        File f = new File(fileName);
+
+        FileInputStream FIS = new FileInputStream(f);
+        XSSFWorkbook workbook = new XSSFWorkbook(FIS);
+        XSSFSheet sheet = workbook.getSheetAt(sheetno);
+        int lastRow = sheet.getLastRowNum();
+        int lastcell = sheet.getRow(0).getLastCellNum()-1;
+
+		System.out.println("\n Last rownum is: " + lastRow);
+		System.out.println("\n Last colnum is: " + lastcell);
+
+        String tcIDexcel, key, value;
+
+        for (int i = 1; i <= lastRow; i++) {
+
+            //Get TC ID from Excel Cell as Key
+            tcIDexcel = sheet.getRow(i).getCell(0).getStringCellValue().trim();
+            System.out.println("\n TCID is: " + tcIDexcel);
+            Map<String, String> dataMap = new HashMap<String, String>();
+
+            for (int j = 1; j <= lastcell; j++) {
+                key = sheet.getRow(0).getCell(j).getStringCellValue().trim();
+                value = sheet.getRow(i).getCell(j).getStringCellValue().trim();
+				System.out.println("\n Key is: " + key);
+				System.out.println("\n Value is: " + value);
+
+                //Putting key & value in dataMap
+                dataMap.put(key, value);
+            }
+            excelFileMap.put(tcIDexcel, dataMap);
+        }
+        return excelFileMap;
+    }
+
+
 }

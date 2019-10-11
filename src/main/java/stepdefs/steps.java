@@ -8,11 +8,14 @@ import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import utils.CommonUtils;
 
 import org.openqa.selenium.By;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -133,5 +136,57 @@ public class steps extends DriverFactory {
             }
         }
         Assert.assertTrue(flag);
+    }
+
+    @When("^user hovers on \"([^\"]*)\" and selects \"([^\"]*)\"$")
+    public void userHoversOnAndSelects(String sectionName, String category) throws Throwable {
+        Actions actions = new Actions(driver);
+        WebElement hoverElement = driver.findElement(By.xpath("//a[@title='" + sectionName + "']"));
+        actions.moveToElement(hoverElement).perform();
+        WebElement clickElement = driver.findElement(By.xpath("//a[@title='" + sectionName + "']//parent::li//a[@title='" + category + "']"));
+        clickElement.click();
+    }
+
+    @And("^verify that (\\d+) products are displayed$")
+    public void verifyThatProductsAreDisplayed(int expProductCount) {
+        int actProductCount = driver.findElements(By.xpath("//ul[@class='product_list grid row']/li")).size();
+        String displayedCount = driver.findElement(By.xpath("//div[@class='product-count'][1]")).getText().split("-")[1].trim().split(" ")[0];
+
+        System.out.println("\nexpProductCount is: " + expProductCount);
+        System.out.println("\nactProductCount is: " + actProductCount);
+        System.out.println("\ndisplayedCount is: " + displayedCount);
+
+        Assert.assertEquals(expProductCount, actProductCount);
+        Assert.assertEquals(expProductCount, Integer.parseInt(displayedCount));
+    }
+
+    @When("^user adds item (\\d+) to the card$")
+    public void userAddsItemToTheCard(int itemIndex) {
+        driver.findElement(By.xpath("//a[@title='Add to cart'][" + itemIndex + "]")).click();
+        //WIP
+    }
+
+    @When("^user applies item filters \"([^\"]*)\" for \"([^\"]*)\"$")
+    public void userAppliesItemFilters(String filters, String tcID) throws Throwable {
+        String path = System.getProperty("user.dir") + "\\src\\test\\resources\\config\\test.xlsx";
+
+        List<String> filterList = new ArrayList<String>();
+        String[] filterString = filters.split(",");
+        for (String i : filterString) {
+            filterList.add(i);
+        }
+        System.out.println("\n Filtered List is: " + filterList);
+
+        Map<String, String> excelData = commonutils.getExcelDataMap(path, 1).get(tcID);
+        System.out.println("\n Parsing Excel Data: \n" + excelData);
+
+        driver.findElement(By.xpath("//label/a[text()='" + excelData.get(filterList.get(0)) + "']//ancestor::li//input")).click();
+        driver.findElement(By.xpath("//label/a[text()='" + excelData.get(filterList.get(1)) + "']//ancestor::li//input")).click();
+        driver.findElement(By.xpath("//label/a[text()='" + excelData.get(filterList.get(3)) + "']//ancestor::li//input")).click();
+
+        Thread.sleep(3000);
+        Assert.assertTrue(driver.findElement(By.xpath("//label/a[text()='" + excelData.get(filterList.get(0)) + "']//ancestor::li//input")).isSelected());
+        Assert.assertTrue(driver.findElement(By.xpath("//label/a[text()='" + excelData.get(filterList.get(1)) + "']//ancestor::li//input")).isSelected());
+        Assert.assertTrue(driver.findElement(By.xpath("//label/a[text()='" + excelData.get(filterList.get(3)) + "']//ancestor::li//input")).isSelected());
     }
 }
