@@ -168,7 +168,7 @@ public class steps extends DriverFactory {
 
     @When("^user applies item filters for \"([^\"]*)\" as per excel sheet \"([^\"]*)\"$")
     public void userAppliesItemFilters(String tcID, String sheetName) throws Throwable {
-        String path = System.getProperty("user.dir") + "\\src\\test\\resources\\config\\test.xlsx";
+        String path = System.getProperty("user.dir") + "/src/test/resources/config/test.xlsx";
 
         Map<String, String> excelData = commonutils.getExcelDataMap(path, sheetName).get(tcID);
         System.out.println("\n Parsing Excel Data: \n" + excelData);

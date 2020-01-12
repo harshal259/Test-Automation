@@ -14,7 +14,7 @@ import java.sql.Statement;
 public class DriverFactory {
 
     protected static WebDriver driver;
-    public static String driverPath = System.getProperty("user.dir") + "\\drivers\\";
+    public static String driverPath = System.getProperty("user.dir") + "/drivers/";
     public String browser = null;
     public static String testURL = null;
     public static PropertyReader propReader = new PropertyReader();
@@ -36,13 +36,14 @@ public class DriverFactory {
 
         if (browser.equalsIgnoreCase("chrome")) {
             if (!driverPath.contains(".exe"))
-                driverPath = driverPath + "\\chromedriver.exe";
+                driverPath = driverPath + "/chromedriver";
             System.out.println("Driver Path: " + driverPath);
             System.setProperty("webdriver.chrome.driver", driverPath);
             driver = new ChromeDriver();
+            driver.manage().window().maximize();
         } else if (browser.equalsIgnoreCase("firefox")) {
             if (!driverPath.contains(".exe"))
-                driverPath = driverPath + "\\geckodriver.exe";
+                driverPath = driverPath + "/geckodriver";
             System.out.println("Driver Path: " + driverPath);
             System.setProperty("webdriver.gecko.driver", driverPath);
             driver = new FirefoxDriver();

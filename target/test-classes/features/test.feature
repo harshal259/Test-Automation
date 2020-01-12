@@ -20,7 +20,7 @@ Feature: Login Feature
       | Shirt      | My Store |
 
   @test
-  Scenario Outline: Hover on Element
+  Scenario Outline: Hover on Element & Read Data From Excel Map
     Given user is on home page
     When user hovers on "<sectionName>" and selects "<category>"
     And verify that 5 products are displayed
@@ -31,5 +31,5 @@ Feature: Login Feature
     Examples:
       | sectionName | category | tcID  | sheetName   |
       | Women       | Dresses  | tc_01 | Item Filter |
-      | Women       | Dresses  | tc_02 | Item Filter |
-      | Women       | Dresses  | tc_03 | Item Filter |
+#      | Women       | Dresses  | tc_02 | Item Filter |
+#      | Women       | Dresses  | tc_03 | Item Filter |

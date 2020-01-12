@@ -16,7 +16,7 @@ public class PropertyReader {
 
     private void loadProperties() {
         try {
-            String path = System.getProperty("user.dir") + "\\src\\test\\resources\\config\\testConfig.properties";
+            String path = System.getProperty("user.dir") + "/src/test/resources/config/testConfig.properties";
             FileInputStream configFile = new FileInputStream(path);
             properties.load(configFile);
         } catch (IOException e) {
