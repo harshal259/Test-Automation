@@ -6,6 +6,7 @@ Feature: Login Feature
 #    Then user click on Data policy link
 #    Then I clear the entered data and reentered it through excel
 
+  @test
   Scenario Outline: Basic navigation
     Given user is on home page
     When user searches for "<searchText>"
@@ -31,5 +32,5 @@ Feature: Login Feature
     Examples:
       | sectionName | category | tcID  | sheetName   |
       | Women       | Dresses  | tc_01 | Item Filter |
-#      | Women       | Dresses  | tc_02 | Item Filter |
-#      | Women       | Dresses  | tc_03 | Item Filter |
+      | Women       | Dresses  | tc_02 | Item Filter |
+      | Women       | Dresses  | tc_03 | Item Filter |
