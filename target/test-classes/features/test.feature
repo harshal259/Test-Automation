@@ -1,10 +1,10 @@
 Feature: Login Feature
 
-  Scenario: Login to facebook
-    Given user is on home page
-    Then user created a new account by entering details
-    Then user click on Data policy link
-    Then I clear the entered data and reentered it through excel
+#  Scenario: Login to facebook
+#    Given user is on home page
+#    Then user created a new account by entering details
+#    Then user click on Data policy link
+#    Then I clear the entered data and reentered it through excel
 
   Scenario Outline: Basic navigation
     Given user is on home page

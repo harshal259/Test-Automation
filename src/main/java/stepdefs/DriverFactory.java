@@ -14,7 +14,9 @@ import java.sql.Statement;
 public class DriverFactory {
 
     protected static WebDriver driver;
-    public static String driverPath = System.getProperty("user.dir") + "/drivers/";
+    public static String driverPath;
+    public static String platform = System.getProperty("os.name");
+    ;
     public String browser = null;
     public static String testURL = null;
     public static PropertyReader propReader = new PropertyReader();
@@ -33,17 +35,22 @@ public class DriverFactory {
 
     private void createNewDriverInstance() {
         browser = propReader.readProperty("browser");
+        System.out.println("OS is: " + platform);
 
         if (browser.equalsIgnoreCase("chrome")) {
-            if (!driverPath.contains(".exe"))
-                driverPath = driverPath + "/chromedriver";
+            if (platform.contains("Windows"))
+                driverPath = System.getProperty("user.dir") + "\\drivers\\" + "chromedriver.exe";
+            else
+                driverPath = System.getProperty("user.dir") + "/drivers/" + "chromedriver";
             System.out.println("Driver Path: " + driverPath);
             System.setProperty("webdriver.chrome.driver", driverPath);
             driver = new ChromeDriver();
             driver.manage().window().maximize();
         } else if (browser.equalsIgnoreCase("firefox")) {
-            if (!driverPath.contains(".exe"))
-                driverPath = driverPath + "/geckodriver";
+            if (platform.contains("Windows"))
+                driverPath = System.getProperty("user.dir") + "\\drivers\\" + "geckodriver.exe";
+            else
+                driverPath = System.getProperty("user.dir") + "/drivers/" + "geckodriver";
             System.out.println("Driver Path: " + driverPath);
             System.setProperty("webdriver.gecko.driver", driverPath);
             driver = new FirefoxDriver();
