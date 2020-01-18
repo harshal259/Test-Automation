@@ -6,6 +6,7 @@ Feature: Login Feature
 #    Then user click on Data policy link
 #    Then I clear the entered data and reentered it through excel
 
+  @test
   Scenario Outline: Basic navigation
     Given user is on home page
     When user searches for "<searchText>"
