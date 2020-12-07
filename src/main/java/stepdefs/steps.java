@@ -1,5 +1,8 @@
 package stepdefs;
 
+import com.codoid.products.fillo.Connection;
+import com.codoid.products.fillo.Fillo;
+import com.codoid.products.fillo.Recordset;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -9,14 +12,12 @@ import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.CommonUtils;
 
 import org.openqa.selenium.By;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
@@ -182,5 +183,42 @@ public class steps extends DriverFactory {
             if (excelData.get(colName) != "")
                 Assert.assertTrue(driver.findElement(By.xpath("//label/a[text()='" + excelData.get(colName) + "']//ancestor::li//input")).isSelected());
         }
+    }
+
+    @Then("^I read data for (.*?)$")
+    public void iReadDataFor(String CustType) throws Throwable {
+        String filePath = System.getProperty("user.dir") + "/src/test/resources/data/testData.xlsx";
+        List<String> expectedList = new ArrayList<>();
+
+        Fillo fillo = new Fillo();
+        Connection connection = fillo.getConnection(filePath);
+        String strQuery = "Select " + CustType + " from Sheet1";
+        Recordset recordset = connection.executeQuery(strQuery);
+        while (recordset.next()) {
+            ArrayList<String> dataCol = recordset.getFieldNames();
+//            System.out.println("Printing Column Headers: " + dataColl);
+            Iterator<String> itr = dataCol.iterator();
+//            System.out.println("Printing Column Header Size: " + dataColl.size());
+
+            while (itr.hasNext()) {
+                for (int i = 0; i <= dataCol.size() - 1; i++) {
+                    String data = itr.next();
+                    String dataVal = recordset.getField(data);
+//                    System.out.println("Printing DataVal: " + dataVal);
+                    expectedList.add(dataVal);
+                }
+                break;
+            }
+        }
+        System.out.println("Printing expected List: " + expectedList);
+        recordset.close();
+        connection.close();
+    }
+
+    @And("^I take a screenshot$")
+    public void iTakeAScreenshot() throws Exception {
+        System.out.println("\nCapturing Screenshot...\n");
+        commonutils.takeSnapShot(driver);
+//        WebDriverWait wait = new WebDriverWait(driver, 10).pollingEvery();
     }
 }

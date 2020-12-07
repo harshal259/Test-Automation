@@ -1,26 +1,27 @@
 package utils;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
+import java.sql.Timestamp;
 
 public class CommonUtils {
 
-    public Select selectDropdown(WebElement s1) {
-        Select ss = new Select(s1);
-
-        return ss;
-
+    public Select selectDropdown(WebElement element) {
+        Select dropdown = new Select(element);
+        return dropdown;
     }
 
     public String ExcelInput(int rowno, int colno, int sheetno, String fileName) throws Exception {
@@ -53,10 +54,10 @@ public class CommonUtils {
         XSSFWorkbook workbook = new XSSFWorkbook(FIS);
         XSSFSheet sheet = workbook.getSheet(sheetName);
         int lastRow = sheet.getLastRowNum();
-        int lastcell = sheet.getRow(0).getLastCellNum()-1;
+        int lastcell = sheet.getRow(0).getLastCellNum() - 1;
 
-		System.out.println("\n Last rownum is: " + lastRow);
-		System.out.println("\n Last colnum is: " + lastcell);
+        System.out.println("\n Last rownum is: " + lastRow);
+        System.out.println("\n Last colnum is: " + lastcell);
 
         String tcIDexcel, key, value;
 
@@ -69,9 +70,9 @@ public class CommonUtils {
 
             for (int j = 1; j <= lastcell; j++) {
                 key = sheet.getRow(0).getCell(j).getStringCellValue().trim();
-                value = sheet.getRow(i).getCell(j,org.apache.poi.ss.usermodel.Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue().trim();
-				System.out.println("\n Key is: " + key);
-				System.out.println("\n Value is: " + value);
+                value = sheet.getRow(i).getCell(j, org.apache.poi.ss.usermodel.Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue().trim();
+                System.out.println("\n Key is: " + key);
+                System.out.println("\n Value is: " + value);
 
                 //Putting key & value in dataMap
                 dataMap.put(key, value);
@@ -79,6 +80,19 @@ public class CommonUtils {
             excelFileMap.put(tcIDexcel, dataMap);
         }
         return excelFileMap;
+    }
+
+    public static void takeSnapShot(WebDriver webdriver) throws Exception {
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String ts = Long.toString(timestamp.getTime());
+
+        String fileWithPath = System.getProperty("user.dir") + "/target/screenshots/" + ts + ".png";
+
+        TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
+        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+        File DestFile = new File(fileWithPath);
+        FileUtils.copyFile(SrcFile, DestFile);
     }
 
 

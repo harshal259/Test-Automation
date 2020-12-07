@@ -19,7 +19,7 @@ Feature: Login Feature
     Examples:
       | searchText | pageName |
       | Shirt      | My Store |
-    
+
   Scenario Outline: Hover on Element & Read Data From Excel Map
     Given user is on home page
     When user hovers on "<sectionName>" and selects "<category>"
@@ -33,3 +33,14 @@ Feature: Login Feature
       | Women       | Dresses  | tc_01 | Item Filter |
 #      | Women       | Dresses  | tc_02 | Item Filter |
 #      | Women       | Dresses  | tc_03 | Item Filter |
+
+  Scenario Outline: Fillo Excel Data Read
+    Then I read data for "<CustType>"
+
+    Examples:
+      | CustType |
+      | CITY     |
+
+    Scenario: Take screenshot
+      Given user is on home page
+      And I take a screenshot

@@ -16,7 +16,6 @@ public class DriverFactory {
     protected static WebDriver driver;
     public static String driverPath;
     public static String platform = System.getProperty("os.name");
-    ;
     public String browser = null;
     public static String testURL = null;
     public static PropertyReader propReader = new PropertyReader();
