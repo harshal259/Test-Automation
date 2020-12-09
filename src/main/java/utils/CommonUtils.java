@@ -10,14 +10,20 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import stepdefs.DriverFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.sql.Timestamp;
+import java.util.concurrent.TimeUnit;
 
-public class CommonUtils {
+public class CommonUtils extends DriverFactory {
+
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 
     public Select selectDropdown(WebElement element) {
         Select dropdown = new Select(element);
@@ -85,7 +91,8 @@ public class CommonUtils {
     public static void takeSnapShot(WebDriver webdriver) throws Exception {
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        String ts = Long.toString(timestamp.getTime());
+        String ts = sdf.format(timestamp);
+        System.out.println("Printing SF timestamp: " + ts);
 
         String fileWithPath = System.getProperty("user.dir") + "/target/screenshots/" + ts + ".png";
 
@@ -93,6 +100,11 @@ public class CommonUtils {
         File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
         File DestFile = new File(fileWithPath);
         FileUtils.copyFile(SrcFile, DestFile);
+    }
+
+    public void waitForPageLoad() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.pollingEvery(5, TimeUnit.SECONDS);
     }
 
 

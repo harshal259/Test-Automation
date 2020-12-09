@@ -218,7 +218,7 @@ public class steps extends DriverFactory {
     @And("^I take a screenshot$")
     public void iTakeAScreenshot() throws Exception {
         System.out.println("\nCapturing Screenshot...\n");
+        commonutils.waitForPageLoad();
         commonutils.takeSnapShot(driver);
-//        WebDriverWait wait = new WebDriverWait(driver, 10).pollingEvery();
     }
 }
