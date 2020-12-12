@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 public class steps extends DriverFactory {
     public CommonUtils commonutils = null;
+//    String reportConfigPath = propReader.readProperty("reportConfigPath");
 
     public steps() {
         commonutils = new CommonUtils();

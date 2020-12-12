@@ -1,3 +1,4 @@
+@test
 Feature: Login Feature
 
 #  Scenario: Login to facebook
@@ -19,6 +20,7 @@ Feature: Login Feature
     Examples:
       | searchText | pageName |
       | Shirt      | My Store |
+
 
   Scenario Outline: Hover on Element & Read Data From Excel Map
     Given user is on home page
