@@ -22,27 +22,27 @@ Feature: Login Feature
       | Shirt      | My Store |
 
 
-  Scenario Outline: Hover on Element & Read Data From Excel Map
-    Given user is on home page
-    When user hovers on "<sectionName>" and selects "<category>"
-    And verify that 5 products are displayed
-    When user applies item filters for "<tcID>" as per excel sheet "<sheetName>"
+  #Scenario Outline: Hover on Element & Read Data From Excel Map
+    #Given user is on home page
+    #When user hovers on "<sectionName>" and selects "<category>"
+    #And verify that 5 products are displayed
+    #When user applies item filters for "<tcID>" as per excel sheet "<sheetName>"
 #    When user adds item 1 to the card
 #    Then I execute select query on DB
-
-    Examples:
-      | sectionName | category | tcID  | sheetName   |
-      | Women       | Dresses  | tc_01 | Item Filter |
+#
+    #Examples:
+      #| sectionName | category | tcID  | sheetName   |
+      #| Women       | Dresses  | tc_01 | Item Filter |
 #      | Women       | Dresses  | tc_02 | Item Filter |
 #      | Women       | Dresses  | tc_03 | Item Filter |
-
-  Scenario Outline: Fillo Excel Data Read
-    Then I read data for "<CustType>"
-
-    Examples:
-      | CustType |
-      | CITY     |
-
-    Scenario: Take screenshot
-      Given user is on home page
-      And I take a screenshot
+#
+  #Scenario Outline: Fillo Excel Data Read
+    #Then I read data for "<CustType>"
+#
+    #Examples:
+      #| CustType |
+      #| CITY     |
+#
+    #Scenario: Take screenshot
+      #Given user is on home page
+      #And I take a screenshot
