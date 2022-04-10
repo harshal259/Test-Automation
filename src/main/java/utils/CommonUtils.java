@@ -107,5 +107,4 @@ public class CommonUtils extends DriverFactory {
         wait.pollingEvery(Duration.ofSeconds(5));
     }
 
-
 }
