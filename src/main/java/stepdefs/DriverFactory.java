@@ -48,10 +48,11 @@ public class DriverFactory {
             System.setProperty("webdriver.chrome.driver", driverPath);
 
             ChromeOptions options = new ChromeOptions();
+            options.addArguments("--no-sandbox");
+            options.setExperimentalOption("useAutomationExtension", false);
             options.addArguments("start-maximized"); // open Browser in maximized mode
             options.addArguments("--disable-extensions"); // disabling extensions
             options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-            options.addArguments("--no-sandbox"); // Bypass OS security model
 
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("firefox")) {
