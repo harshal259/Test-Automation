@@ -25,13 +25,5 @@ public class RunCukesTest {
     @AfterClass
     public static void writeExtentReport() {
         String configFilepath = System.getProperty("user.dir") + "/src/test/resources/config/extent-config.xml";
-        Reporter.loadXMLConfig(new File(configFilepath));
-
-        Reporter.setSystemInfo("User Name", System.getProperty("user.name"));
-        Reporter.setSystemInfo("Time Zone", System.getProperty("user.timezone"));
-        Reporter.setSystemInfo("Machine", System.getProperty("os.name"));
-//        Reporter.setSystemInfo("Selenium", "3.7.0");
-//        Reporter.setSystemInfo("Maven", "3.5.2");
-//        Reporter.setSystemInfo("Java Version", "1.8.0_151");
     }
 }
