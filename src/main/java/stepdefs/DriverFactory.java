@@ -2,6 +2,7 @@ package stepdefs;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import utils.PropertyReader;
@@ -45,8 +46,14 @@ public class DriverFactory {
                 driverPath = "/usr/bin/chromedriver";
             System.out.println("Driver Path: " + driverPath);
             System.setProperty("webdriver.chrome.driver", driverPath);
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
+
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("start-maximized"); // open Browser in maximized mode
+            options.addArguments("--disable-extensions"); // disabling extensions
+            options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+            options.addArguments("--no-sandbox"); // Bypass OS security model
+
+            driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("firefox")) {
             if (platform.contains("Windows"))
                 driverPath = System.getProperty("user.dir") + "\\drivers\\" + "geckodriver.exe";
@@ -55,6 +62,7 @@ public class DriverFactory {
             System.out.println("Driver Path: " + driverPath);
             System.setProperty("webdriver.gecko.driver", driverPath);
             driver = new FirefoxDriver();
+            driver.manage().window().maximize();
         } else if (browser.equalsIgnoreCase("edge")) {
             if (platform.contains("Windows"))
                 driverPath = System.getProperty("user.dir") + "\\drivers\\" + "geckodriver.exe";
@@ -63,6 +71,7 @@ public class DriverFactory {
             System.out.println("Driver Path: " + driverPath);
             System.setProperty("webdriver.edge.driver", driverPath);
             driver = new EdgeDriver();
+            driver.manage().window().maximize();
         } else {
             System.out.println("can't read browser type");
         }
