@@ -14,12 +14,13 @@ import java.io.File;
         features = "src/test/resources/features",
         glue = {"stepdefs", "utils"},
         plugin = {
-//                "pretty",
-//                "json:target/reports/cucumber.json",
-                "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"},
+                "pretty",
+                "json:target/reports/cucumber.json",
+//                "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"
+        },
         tags = "@test"
 )
-public class RunCukesTest{
+public class RunCukesTest {
 
     @AfterClass
     public static void writeExtentReport() {
