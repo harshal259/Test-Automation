@@ -2,7 +2,7 @@
 
 This is an open source Test Automation Framework based off Java-Selenium-Cucumber.
 
-It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition (2019).
+It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition (2022).
 
 
 ## Below are the Key Features:
@@ -46,7 +46,7 @@ It can be run on any IDE, however, we have used IDEA-IntelliJ Community Edition 
         
    4. **Runner Config:**
    
-      - Main Class: cucumber.api.cli.Main
+      - Main Class: io.cucumber.core.cli.Main
       - Features: path/to/features/
       - Glue: stepdefs
 

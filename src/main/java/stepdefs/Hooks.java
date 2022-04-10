@@ -1,7 +1,7 @@
 package stepdefs;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import io.cucumber.java.*;
+import utils.CommonUtils;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,5 +23,10 @@ public class Hooks extends DriverFactory{
         System.out.println("This is the after hook\nClosing the browser...");
         new DriverFactory().destroyDriver();
 //        conn.close();
+    }
+
+    @AfterStep
+    public void captureScreenshot() throws Exception {
+        CommonUtils.takeSnapShot(driver);
     }
 }

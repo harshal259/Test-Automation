@@ -1,4 +1,4 @@
-@test
+
 Feature: Login Feature
 
 #  Scenario: Login to facebook

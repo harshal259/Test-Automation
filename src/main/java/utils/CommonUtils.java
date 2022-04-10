@@ -16,6 +16,7 @@ import stepdefs.DriverFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -93,8 +94,7 @@ public class CommonUtils extends DriverFactory {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String ts = sdf.format(timestamp);
         System.out.println("Printing SF timestamp: " + ts);
-
-        String fileWithPath = System.getProperty("user.dir") + "/target/screenshots/" + ts + ".png";
+        String fileWithPath = System.getProperty("user.dir") + "/target/screenshots/" + DriverFactory.browser + "_" + ts + ".png";
 
         TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
         File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
@@ -103,8 +103,8 @@ public class CommonUtils extends DriverFactory {
     }
 
     public void waitForPageLoad() {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.pollingEvery(5, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.pollingEvery(Duration.ofSeconds(5));
     }
 
 
