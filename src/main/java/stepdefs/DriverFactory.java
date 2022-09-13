@@ -37,44 +37,50 @@ public class DriverFactory {
     private void createNewDriverInstance() {
         System.out.println("OS is: " + platform);
         browser = propReader.readProperty("browser");
+        switch (browser) {
 
-        if (browser.equalsIgnoreCase("chrome")) {
-            if (platform.contains("Windows"))
-                driverPath = System.getProperty("user.dir") + "\\drivers\\" + "chromedriver.exe";
-            else
+            case "chrome":
+
+                if (platform.contains("Windows"))
+                    driverPath = System.getProperty("user.dir") + "\\drivers\\" + "chromedriver.exe";
+                else
 //                driverPath = System.getProperty("user.dir") + "/drivers/" + "chromedriver";
-                driverPath = "/usr/bin/chromedriver";
-            System.out.println("Driver Path: " + driverPath);
-            System.setProperty("webdriver.chrome.driver", driverPath);
+                    driverPath = "/usr/bin/chromedriver";
+                System.out.println("Driver Path: " + driverPath);
+                System.setProperty("webdriver.chrome.driver", driverPath);
 
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--no-sandbox");
-            options.addArguments("--headless");
-            options.addArguments("start-maximized"); // open Browser in maximized mode
-            options.addArguments("--disable-extensions"); // disabling extensions
-            options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--no-sandbox");
+                options.addArguments("--headless");
+                options.addArguments("start-maximized"); // open Browser in maximized mode
+                options.addArguments("--disable-extensions"); // disabling extensions
+                options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
 
-            driver = new ChromeDriver(options);
-        } else if (browser.equalsIgnoreCase("firefox")) {
-            if (platform.contains("Windows"))
-                driverPath = System.getProperty("user.dir") + "\\drivers\\" + "geckodriver.exe";
-            else
-                driverPath = System.getProperty("user.dir") + "/drivers/" + "geckodriver";
-            System.out.println("Driver Path: " + driverPath);
-            System.setProperty("webdriver.gecko.driver", driverPath);
-            driver = new FirefoxDriver();
-            driver.manage().window().maximize();
-        } else if (browser.equalsIgnoreCase("edge")) {
-            if (platform.contains("Windows"))
-                driverPath = System.getProperty("user.dir") + "\\drivers\\" + "geckodriver.exe";
-            else
-                driverPath = System.getProperty("user.dir") + "/drivers/" + "msedgedriver";
-            System.out.println("Driver Path: " + driverPath);
-            System.setProperty("webdriver.edge.driver", driverPath);
-            driver = new EdgeDriver();
-            driver.manage().window().maximize();
-        } else {
-            System.out.println("can't read browser type");
+                driver = new ChromeDriver(options);
+
+            case "firefox":
+                if (platform.contains("Windows"))
+                    driverPath = System.getProperty("user.dir") + "\\drivers\\" + "geckodriver.exe";
+                else
+                    driverPath = System.getProperty("user.dir") + "/drivers/" + "geckodriver";
+                System.out.println("Driver Path: " + driverPath);
+                System.setProperty("webdriver.gecko.driver", driverPath);
+                driver = new FirefoxDriver();
+                driver.manage().window().maximize();
+
+            case "msedge":
+                if (platform.contains("Windows"))
+//                    driverPath = System.getProperty("user.dir") + "\\drivers\\" + "msedgedriver.exe";
+                    driverPath = "C:\\Projects\\drivers\\msedgedriver.exe";
+                else
+                    driverPath = System.getProperty("user.dir") + "/drivers/" + "msedgedriver";
+                System.out.println("Driver Path: " + driverPath);
+                System.setProperty("webdriver.edge.driver", driverPath);
+                driver = new EdgeDriver();
+                driver.manage().window().maximize();
+
+            default:
+                System.out.println("can't read browser type");
         }
     }
 
