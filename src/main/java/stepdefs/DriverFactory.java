@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import utils.PropertyReader;
 
@@ -57,6 +58,7 @@ public class DriverFactory {
                 options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
 
                 driver = new ChromeDriver(options);
+                break;
 
             case "firefox":
                 if (platform.contains("Windows"))
@@ -67,6 +69,7 @@ public class DriverFactory {
                 System.setProperty("webdriver.gecko.driver", driverPath);
                 driver = new FirefoxDriver();
                 driver.manage().window().maximize();
+                break;
 
             case "msedge":
                 if (platform.contains("Windows"))
@@ -76,8 +79,17 @@ public class DriverFactory {
                     driverPath = System.getProperty("user.dir") + "/drivers/" + "msedgedriver";
                 System.out.println("Driver Path: " + driverPath);
                 System.setProperty("webdriver.edge.driver", driverPath);
-                driver = new EdgeDriver();
+
+                EdgeOptions edgeoptions = new EdgeOptions();
+                edgeoptions.addArguments("--no-sandbox");
+                edgeoptions.addArguments("--headless");
+                edgeoptions.addArguments("start-maximized"); // open Browser in maximized mode
+                edgeoptions.addArguments("--disable-extensions"); // disabling extensions
+                edgeoptions.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+
+                driver = new EdgeDriver(edgeoptions);
                 driver.manage().window().maximize();
+                break;
 
             default:
                 System.out.println("can't read browser type");
